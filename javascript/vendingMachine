@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vending machine</title>
+    <script>
+        let money=0;
+        function buy(price) {
+            if(money == 0 || money < price) {
+                alert("돈이 부족합니다.")
+            }
+            else {
+                switch(price) {
+                    case 1800:
+                        alert("허니버터칩 구매");
+                        money -= 1800;
+                        setMoney(0)
+                        break;
+                    case 1500:
+                        alert("포켓몬빵 구매");
+                        money -= 1500;
+                        setMoney(0)
+                        break;
+                    case 800:
+                        alert("옥수수브이콘 구매");
+                        money -= 800;
+                        setMoney(0)
+                        break;
+                    default:
+                        break;
+                }
+            }
+            isBuy()
+        }
+        function setMoney(won) {
+            money += won;
+            document.getElementById("balance").innerHTML="현재 금액 : "+money+"원";
+            isBuy()
+        }
+        function isBuy() {
+            if(money >= 1800) {
+                document.getElementById("buy1").style.color="blue";
+                document.getElementById("buy2").style.color="blue";
+                document.getElementById("buy3").style.color="blue";
+            }
+            else if(money >= 1500) {
+                document.getElementById("buy1").style.color="red";
+                document.getElementById("buy2").style.color="blue";
+                document.getElementById("buy3").style.color="blue";
+            }
+            else if(money >= 500) {
+                document.getElementById("buy1").style.color="red";
+                document.getElementById("buy2").style.color="red";
+                document.getElementById("buy3").style.color="blue";
+            }
+            else {
+                document.getElementById("buy1").style.color="red";
+                document.getElementById("buy2").style.color="red";
+                document.getElementById("buy3").style.color="red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button id="buy1" onclick="buy(1800)">허니버터칩(1800원)</button>
+        <button id="buy2" onclick="buy(1500)">포캣몬빵(1500원)</button>
+        <button id="buy3" onclick="buy(800)">옥수수브이콘(800원)</button>
+    </div>
+    <div>
+        <button onclick="setMoney(1000)">1000원</button>
+        <button onclick="setMoney(500)">500원</button>
+        <button onclick="setMoney(100)">100원</button>
+    </div>
+    <p id="balance">현재 금액 : 0원</p>
+</body>
+</html>
